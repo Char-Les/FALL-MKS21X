@@ -1,8 +1,8 @@
 import java.util.Iterator;
-public class SuperArrayIterator implements Itorator<String>{
+public class SuperArrayIterator implements Iterator<String>{
     private int start, end;
 
-    public IntIterator(int start, int end){
+    public SuperArrayIterator(int start, int end){
 	this.start = start;
 	this.end = end;
     }
@@ -21,9 +21,9 @@ public class SuperArrayIterator implements Itorator<String>{
     }
 
     public void remove(){
-	throw new UnsupportedOperationException()
+	throw new UnsupportedOperationException();
     }
  
-   }
+ }
 
-}
+
