@@ -1,19 +1,24 @@
-import java.util.Iterator;
-public class SuperArray implements iterable<String>{
-    private int[] data;
+import java.util.*;
+public class SuperArray implements Iterable<String>{
+    private String[] data;
     private int size;
 
     public SuperArray(int n){
 	if (n < 0){
 	    throw new IllegalArgumentException("Array Construction: " + n);
 	}
-	data = new int[n];
+	data = new String[n];
 	size = 0;
     }
     public SuperArray(){
-	data = new int[10];
+	data = new String[10];
 	size = 0;
     }
+
+    public Iterator<String> iterator(){
+	return new SuperArrayIterator(0, size, this);
+    }
+    
     //returns size
     public int size(){
 	int a = size;	
@@ -25,57 +30,57 @@ public class SuperArray implements iterable<String>{
 	return true;
 	}
     //returns the number at the index
-    public int get(int index){
+    public String get(int index){
 	if ((index < 0 || index >= size())){
 	    throw new IndexOutOfBoundsException("get: " + index);
 	}
 	return data[index];
     }
     //adds n to the end of the array
-    public boolean add(int n){
+    public boolean add(String n){
 	if (size < data.length){
 	    data[size] = n;
+		size ++;
 	}
 	else{
 	    grow();
-	    data[size] = n;
+	    add(n);
 	}
-	size ++;
 	return true;
     }
     //for add in case the array is too small
     private void grow(){
-	int[] temp = new int[size * 2 + 1];
+	String[] temp = new String[size * 2 + 1];
 	for (int a  = 0; a < data.length; a++){
 	    temp[a] = data[a];
 	}
 	data = temp;
     }
-    //returns the array
+    //returns the array as a string
     public String toString(){
 	String a = "[ ";
 	if (size != 0){
-	    a = a + data[0];
+	    a = a + "\"" + data[0] + "\"";
 	}
 	for (int b = 1; b < size; b++){
-	    a = a + ", " + data[b];
+	    a = a + ", " + "\"" + data[b] + "\"";
 	}
 	a = a + "]";
 	return a;
     }
-    //returns the array with the empty spaces
+    //returns the entire array with the empty spaces as  
     public String toStringDebug(){
 	String a = "[ ";
 	if (size != 0){
-	    a = a + data[0];
+	    a = a + "\"" + data[0] + "\"";
 	}
 	else {
 	    a += "_";
 	}
 	for (int b = 1; b < data.length; b++){
-	    a = a + ", ";
+	    a = a +", ";
 	    if (b < size){
-		a += data[b];
+		a += "\"" + data[b] + "\"";
 	    }
 	    else{
 		a += "_";
@@ -86,7 +91,7 @@ public class SuperArray implements iterable<String>{
     }
     //resets the array of all its elements
     public void clear(){
-	int[] temp = new int[data.length];
+	String[] temp = new String[data.length];
 	data = temp;
 	size = 0;
     }
@@ -96,7 +101,7 @@ public class SuperArray implements iterable<String>{
 	if (size == 0){
 	    return true;
 	}
-	int[] temp = new int[size];
+	String[] temp = new String[size];
 	for(int a = 0; a < size; a++){
 	    if (data[a] != temp[a]){
 		return false;
@@ -105,21 +110,21 @@ public class SuperArray implements iterable<String>{
 	return true;
     }
     //python pop + replace funtion
-    public int set(int index, int n){
+    public String set(int index, String n){
 	if ((index < 0 || index >= size())){
 	    throw new IndexOutOfBoundsException("set: " + index + ", " + n);
 	}
-	int ans = data[index];
+	String ans = data[index];
 	data[index] = n;
 	return ans;
     }
     //adds a number at the index
-    public void add(int index, int n){
+    public void add(int index, String n){
 	if ((index < 0 || index > size())){
 	    throw new IndexOutOfBoundsException("add: " + index + ", " + n);
 	}
 	int a = 0;
-	int[] temp = new int[data.length + 1];
+	String[] temp = new String[data.length + 1];
 	for(;a < index;a++){
 	    temp[a]=data[a];
 	}
@@ -132,13 +137,13 @@ public class SuperArray implements iterable<String>{
 	size ++;
     }
     //removes the number at the index
-    public int remove(int index){
+    public String remove(int index){
 	if ((index < 0 || index >= size())){
 	    throw new IndexOutOfBoundsException("remove: " + index);
 	}
-	int ans = data[index];
+	String ans = data[index];
 	int a = 0;
-	int[] temp = new int[data.length - 1];
+	String[] temp = new String[data.length - 1];
 	for(;a < index;a++){
 	    temp[a]=data[a];
 	}
@@ -150,26 +155,26 @@ public class SuperArray implements iterable<String>{
 	return ans;
     }
     //returns data
-    public int[] toArray(){
-	int[] ans = new int[size];
+    public String[] toArray(){
+	String[] ans = new String[size];
 	for (int a = 0; a < size; a++){
 	    ans[a] = data[a];
 	}
 	return ans;
     }
     //returns the first index of an element
-    public int indexOf(int i){
+    public int indexOf(String i){
 	for(int a = 0;a < size; a++){
-	    if (data[a] == i){
+	    if (data[a].compareTo(i) == 0){
 		return a;
 	    }
 	}
 	return -1;
     }
     //returns the last index of an element
-    public int lastIndexOf(int i){
-	for(int a = size -1 ;a >= 0; a -= 1){
-	    if (data[a] == i){
+    public int lastIndexOf(String i){
+	for(int a = size - 1 ;a >= 0; a -= 1){
+	    if (data[a].compareTo(i) == 0){
 		return a;
 	    }
 	}
@@ -177,7 +182,7 @@ public class SuperArray implements iterable<String>{
     }
     //trims off extra values
     public void trimToSize(){
-	int[] temp = new int[size];
+	String[] temp = new String[size];
 	for(int a = 0; a < size ; a++){
 	    temp[a] = data[a];
 	}
@@ -186,21 +191,30 @@ public class SuperArray implements iterable<String>{
     //tests the functions
     public static void main(String[]args){
 	SuperArray s = new SuperArray();
+	SuperArray t = new SuperArray(15);
+	System.out.println(t.size());
+	t.setSize(10);
+	System.out.println(t.size());
 	System.out.println(s.size());
 	System.out.println(s);
 	System.out.println(s.toStringDebug());
 	for(int a= 0; a < 15; a++ ){
-	    s.add(a);
+	    s.add("" + a);
 	}
-    	System.out.println(s.toStringDebug());
-	System.out.println(s.set(0,15));
+    System.out.println(s.toStringDebug());
+	System.out.println(s.set(0,"15"));
 	System.out.println(s.get(0));
-	s.add(7,32);
+	s.add(7,"32");
 	System.out.println(s.toStringDebug());
 	System.out.println(s.remove(7));
 	System.out.println(s.toStringDebug());
-	System.out.println(s.indexOf(3));
-	System.out.println(s.lastIndexOf(15));
-	
-    }
+	System.out.println(s.indexOf("3"));
+	System.out.println(s.lastIndexOf("15"));
+	s.trimToSize();
+	System.out.println(s);
+	System.out.println(s.isEmpty());
+	System.out.println(t.isEmpty());
+    s.clear();
+	System.out.println(s.isEmpty());
+}
 }
