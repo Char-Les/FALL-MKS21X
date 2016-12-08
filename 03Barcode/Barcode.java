@@ -55,8 +55,8 @@ public class Barcode implements Comparable<Barcode>{
     public String toString(){
 	String ans = _zip + _checkDigit;
 	String bar = "|";
-	for (int a  = 0; a < _zip.length(); a++){
-	    int num = (int)_zip.charAt(a);
+	for (int a  = 0; a < ans.length(); a++){
+	    int num = ans.charAt(a) - '0';
 	    switch (num){
 	    case 1: bar += one;
 		break;
