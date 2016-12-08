@@ -1,5 +1,8 @@
 public class Driver{
     public static void main(String[]args){
+	for (int a = 0; a < 10; a ++){
+	    System.out.println(a + "  " + Barcode.bars[a]);
+	}
 	Barcode a,b;
 	a = new Barcode("08451");
 	System.out.println(a);
@@ -12,6 +15,8 @@ public class Driver{
 	a = new Barcode("12345");
 	System.out.println(a);
 
+	b = a.clone();
+
 	/*shouldn't work
 	a = new Barcode("1234567");
 	System.out.println(a);
@@ -19,6 +24,7 @@ public class Driver{
 	System.out.println(a);
 	a = new Barcode("12ab5");
 	System.out.println(a);*/
+	
 	
        
     }

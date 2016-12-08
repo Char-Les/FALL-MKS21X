@@ -3,16 +3,7 @@ public class Barcode implements Comparable<Barcode>{
     private String _zip;
     private int _checkDigit;
     
-    public static final String one   = ":::||";
-    public static final String two   = "::|:|";
-    public static final String three = "::||:";
-    public static final String four  = ":|::|";
-    public static final String five  = ":|:|:";
-    public static final String six   = ":||::";
-    public static final String seven = "|:::|";
-    public static final String eight = "|::|:";
-    public static final String nine  = "|:|::";
-    public static final String zero  = "||:::";
+    public static final String[] bars = {"||:::", ":::||", "::|:|", "::||:", ":|::|", ":|:|:", ":||::", "|:::|", "|::|:", "|:|::"};
    
 
     // constructors
@@ -54,41 +45,24 @@ public class Barcode implements Comparable<Barcode>{
     //ex. "084518  |||:::|::|::|::|:|:|::::|||::|:|"      
     public String toString(){
 	String ans = _zip + _checkDigit;
-	String bar = "|";
-	for (int a  = 0; a < ans.length(); a++){
-	    int num = ans.charAt(a) - '0';
-	    switch (num){
-	    case 1: bar += one;
-		break;
-	    case 2: bar += two;
-		break;
-	    case 3: bar += three;
-		break;
-	    case 4: bar += four;
-		break;
-	    case 5: bar += five;
-		break;
-	    case 6: bar += six;
-		break;
-	    case 7: bar += seven;
-		break;
-	    case 8: bar += eight;
-		break;
-	    case 9: bar += nine;
-		break;
-	    default: bar += zero;
-		break;
-	    }	  
-	}
-	bar += "|";
-	return ans += " " + bar;
+	return ans += " " + getCode(ans);
     }
 
+    public static String getCode(String zip){
+	String bar = "|";
+	for (int a  = 0; a < zip.length(); a++){
+	    int num = zip.charAt(a) - '0';
+	    bar += bars[num];
+	}	  
+	bar += "|";
+	return bar;
+    }
 
     public String getZip(){
 	String a = _zip;
 	return a;
     }
+
     // postcondition: compares the zip + checkdigit, in numerical order. 
     public int compareTo(Barcode other){
 	return this._zip.compareTo(other.getZip());
