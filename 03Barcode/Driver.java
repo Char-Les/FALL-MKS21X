@@ -15,8 +15,38 @@ public class Driver{
 	a = new Barcode("12345");
 	System.out.println(a);
 
-	b = a.clone();
-
+	System.out.println(Barcode.toCode("12345"));
+	System.out.println(Barcode.toZip(Barcode.toCode("12345")));
+	try{
+	    System.out.println(Barcode.toZip("|:::||::|:|::||::|::|:|:|::|:|:"));
+	}catch(IllegalArgumentException E){
+	    System.out.println("(fail) invalid length:");
+	    E.printStackTrace();
+	}
+	try{
+	    System.out.println(Barcode.toZip("|:::||::|:|::||::|::|:|:|::|:|::"));
+	}catch(IllegalArgumentException E){
+	    System.out.println("(fail) invalid guard:");
+	    E.printStackTrace();
+	}
+	try{
+	    System.out.println(Barcode.toZip("|:::||::|:w::||::|::|:|:|::|:|:|"));
+	}catch(IllegalArgumentException E){
+	    System.out.println("(fail) invalid characters:");
+	    E.printStackTrace();
+	}
+	try{
+	    System.out.println(Barcode.toZip("|:::||::|:|::||::||:|:|:|::|:|:|"));
+	}catch(IllegalArgumentException E){
+	    System.out.println("(fail) invalid conversion:");
+	    E.printStackTrace();
+	}
+	try{
+	    System.out.println(Barcode.toZip("|:::||::|:|::||::|::|:|:|::::|||"));
+	}catch(IllegalArgumentException E){
+	    System.out.println("(fail) invalid checkSum:");
+	    E.printStackTrace();
+	}
 	/*shouldn't work
 	a = new Barcode("1234567");
 	System.out.println(a);
