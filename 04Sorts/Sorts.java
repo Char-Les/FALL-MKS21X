@@ -12,9 +12,9 @@ public class Sorts{
      *@param data  the elements to be sorted.
      */
     public static void selectionSort(int[] data){
-	int temp;
+	int temp = 0;
 	for (int a = 0; a < data.length - 1; a ++){
-	    temp = data[a];
+	    int min = a;
 	    for (int b = a + 1; b < data.length; b ++){
 		if (temp > data[b]){
 		    temp = data[b];
@@ -32,20 +32,14 @@ public class Sorts{
      *@param data  the elements to be sorted.
      */
     public static void insertionSort(int[] data){
-	int temp;
 	for(int a = 1; a < data.length; a++){
-	    temp = data[a];
-	    for (int b = a - 1; b >= 0; b --){
-		if (temp >= data[b]){
-		    data[b + 1] = temp;
-		    b = -1;
-		}else if ( temp < data[b] && b == 0){
-		    data[b + 1] = data[b];
-		    data[b] = temp;
-		}else{
-		    data[b + 1] = data[b];		}
-		
+	    int temp = data[a];
+	    int place = a; 
+	    while ( place > 0 && temp > data[place]){
+		data[place] = data[place - 1];
+		place --;
 	    }
+	    data[place] = temp;
 	}
     }
     
@@ -55,19 +49,16 @@ public class Sorts{
      *@param data  the elements to be sorted.
      */
     public static void bubbleSort(int[] data){
-	int temp, swaps;
-	for (int a = 0; a < data.length - 1; a ++){
-	    swaps = 0;
+	boolean swap = true;
+	for (int a = 0; a < data.length - 1 && swap; a ++){
+	    swap = false;
 	    for (int b = 0; b < data.length - a - 1; b++){
 		if (data[b] > data[b + 1]){
-		    temp = data[b + 1];
+		    int temp = data[b + 1];
 		    data[b + 1] = data[b];
 		    data[b] = temp;
-		    swaps ++;
+		    swap = true;
 		}
-	    }
-	    if (swaps == 0){
-		return;
 	    }
 	}
     }
