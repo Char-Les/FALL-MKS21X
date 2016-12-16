@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Sorts{
     /**EDIT THIS METHOD TO MATCH YOUR NAME 
      */
@@ -19,6 +21,7 @@ public class Sorts{
 		    data[b] = data[a];
 		    data[a] = temp;
 		}
+
 	    }
 	    data[a] = temp;
 	}
@@ -32,13 +35,16 @@ public class Sorts{
 	int temp;
 	for(int a = 1; a < data.length; a++){
 	    temp = data[a];
-	    for (int b = a -1; b >=0; b --){
+	    for (int b = a - 1; b >= 0; b --){
 		if (temp >= data[b]){
 		    data[b + 1] = temp;
 		    b = -1;
-		}else{
+		}else if ( temp < data[b] && b == 0){
 		    data[b + 1] = data[b];
-		}
+		    data[b] = temp;
+		}else{
+		    data[b + 1] = data[b];		}
+		
 	    }
 	}
     }
@@ -76,18 +82,18 @@ public class Sorts{
     }
 
     public static void main(String[] args){
-	/*int[] a = {1,8,0,1,4,3,9,8,5,0,9,4,8,1,9,8,4};
+	int[] a = {1,8,0,1,4,3,9,8,5,0,9,4,8,1,9,8,4};
 	print(a);
 	selectionSort(a);
-	print(a);*/
+	print(a);
 	int[] b=  {1,8,0,1,4,3,9,8,5,0,9,4,8,1,9,8,4};
 	print(b);
 	insertionSort(b);
 	print(b);
-	/*int[] c = {1,8,0,1,4,3,9,8,5,0,9,4,8,1,9,8,4};
+	int[] c = {1,8,0,1,4,3,9,8,5,0,9,4,8,1,9,8,4};
 	print(c);
 	bubbleSort(c);
-	print(c); */
+	print(c); 
 	
 
 	long start, end;
@@ -95,10 +101,41 @@ public class Sorts{
 	    System.out.println("java Sorts arraySize [0sort/1sel/2ins/3bub] [0rand/1up/2down/3lim]");
 	    System.exit(1);
 	}
-	start = System.currentTimeMillis();
-	for(int a = 0; a < Integer(args[0]); a ++){
-	    if ()
+
+	Random rand = new Random();
+	int[] data = new int[Integer.parseInt(args[0])];
+	for(int count = 0; count < Integer.parseInt(args[0]); count ++){
+	    if (args[2].compareTo("0") == 0){
+		data[count] = rand.nextInt(Integer.parseInt(args[0]));
+	    }
+	    if (args[2].compareTo("1") == 0){
+		data[count] = count;
+	    }
+	    if (args[2].compareTo("2") == 0){
+		data[count] = Integer.parseInt(args[0]) - count;
+	    }
+	    if (args[2].compareTo("3") == 0){
+		data[count] = rand.nextInt(10);
+	    }
 	}
+
+	start = System.currentTimeMillis();
+	if(args[1].compareTo("0") == 0){
+	    Arrays.sort(data);
+	}
+	if(args[1].compareTo("1") == 0){
+	    selectionSort(data);
+	}
+	if(args[1].compareTo("2") == 0){
+	    insertionSort(data);
+	}
+	if(args[1].compareTo("3") == 0){
+	    bubbleSort(data);
+	}
+
+	end = System.currentTimeMillis();
+
+	System.out.println(end - start);
     }
     
 }
