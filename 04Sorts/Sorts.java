@@ -29,15 +29,14 @@ public class Sorts{
      *@param data  the elements to be sorted.
      */
     public static void insertionSort(int[] data){
-	for(int a = 1; a < data.length; a++){
-	    int temp = data[a];
-	    int place = a; 
-	    while ( place > 0 && temp > data[place]){
-		data[place] = data[place - 1];
-		place --;
+	for(int thingToPutInPlace = 1; thingToPutInPlace < data.length; thingToPutInPlace ++){
+	    int temp = data[thingToPutInPlace];
+	    int check = thingToPutInPlace;
+	    for(; check > 0 && temp < data[check - 1]; check --){
+		data[check] = data[check - 1];
 	    }
-	    data[place] = temp;
-	}
+	    data[check] = temp;
+ 	}
     }
     
     
@@ -70,20 +69,23 @@ public class Sorts{
     }
 
     public static void main(String[] args){
+	System.out.println("Select");
 	int[] a = {1,8,0,1,4,3,9,8,5,0,9,4,8,1,9,8,4};
 	print(a);
 	selectionSort(a);
 	print(a);
+	System.out.println("Insert");
 	int[] b=  {1,8,0,1,4,3,9,8,5,0,9,4,8,1,9,8,4};
 	print(b);
 	insertionSort(b);
 	print(b);
+	System.out.println("Bubble");
 	int[] c = {1,8,0,1,4,3,9,8,5,0,9,4,8,1,9,8,4};
 	print(c);
 	bubbleSort(c);
 	print(c); 
 	
-
+	System.out.println("Custom");
 	long start, end;
 	if (args.length < 3){
 	    System.out.println("java Sorts arraySize [0sort/1sel/2ins/3bub] [0rand/1up/2down/3lim]");
