@@ -4,7 +4,7 @@ public class Sorts{
     /**EDIT THIS METHOD TO MATCH YOUR NAME 
      */
     public static String name(){
-	return "10.Weng.First"; 
+	return "10.Weng.Charles"; 
     }
 
     /**Selection sort of an int array. 
@@ -12,35 +12,31 @@ public class Sorts{
      *@param data  the elements to be sorted.
      */
     public static void selectionSort(int[] data){
-	int temp = 0;
 	for (int a = 0; a < data.length - 1; a ++){
 	    int min = a;
-	    for (int b = a + 1; b < data.length; b ++){
-		if (temp > data[b]){
-		    temp = data[b];
-		    data[b] = data[a];
-		    data[a] = temp;
+	    for (int b = a; b < data.length; b ++){
+		if (data[min] > data[b]){
+		    min = b;
 		}
-
 	    }
+	    int temp = data[min];
+	    data[min] = data[a];	
 	    data[a] = temp;
 	}
     }
-    
     /**Insertion sort of an int array.
      *Upon completion, the elements of the array will be in increasing order.
      *@param data  the elements to be sorted.
      */
     public static void insertionSort(int[] data){
-	for(int a = 1; a < data.length; a++){
-	    int temp = data[a];
-	    int place = a; 
-	    while ( place > 0 && temp > data[place]){
-		data[place] = data[place - 1];
-		place --;
+	for(int thingToPutInPlace = 1; thingToPutInPlace < data.length; thingToPutInPlace ++){
+	    int temp = data[thingToPutInPlace];
+	    int check = thingToPutInPlace;
+	    for(; check > 0 && temp < data[check - 1]; check --){
+		data[check] = data[check - 1];
 	    }
-	    data[place] = temp;
-	}
+	    data[check] = temp;
+ 	}
     }
     
     
@@ -73,20 +69,23 @@ public class Sorts{
     }
 
     public static void main(String[] args){
+	System.out.println("Select");
 	int[] a = {1,8,0,1,4,3,9,8,5,0,9,4,8,1,9,8,4};
 	print(a);
 	selectionSort(a);
 	print(a);
+	System.out.println("Insert");
 	int[] b=  {1,8,0,1,4,3,9,8,5,0,9,4,8,1,9,8,4};
 	print(b);
 	insertionSort(b);
 	print(b);
+	System.out.println("Bubble");
 	int[] c = {1,8,0,1,4,3,9,8,5,0,9,4,8,1,9,8,4};
 	print(c);
 	bubbleSort(c);
 	print(c); 
 	
-
+	System.out.println("Custom");
 	long start, end;
 	if (args.length < 3){
 	    System.out.println("java Sorts arraySize [0sort/1sel/2ins/3bub] [0rand/1up/2down/3lim]");
