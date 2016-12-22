@@ -68,17 +68,25 @@ public class Sorts{
 	System.out.println();
     }
 
-    public static void (int x){
+    public static String checkCase(int x, int[] ary){
 	if (x == 0){
-	    bubbleSort();
-	} 
+	    System.out.println("select: ");
+	    selectSort(ary);
+	    print()
+	}else if(x == 1){
+	    insertionSort(ary);
+	}else if(x == 2){
+	    bubbleSort(ary);
+	}else{
+	    return "something wrong";
+	}
+	
     }
 
     public static void main(String[] args){
 	int[] (char)0 = {1,8,0,1,4,3,9,8,5,0,9,4,8,1,9,8,4};
 	int[] (char)1 = {};
 	for(int type = 0; type < 3; type ++){
-	    
 	    for(int casee = 0; casee < 2; casee ++){
 		
 	    }
