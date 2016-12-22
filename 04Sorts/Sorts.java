@@ -68,23 +68,23 @@ public class Sorts{
 	System.out.println();
     }
 
+    public static void (int x){
+	if (x == 0){
+	    bubbleSort();
+	} 
+    }
+
     public static void main(String[] args){
-	System.out.println("Select");
-	int[] a = {1,8,0,1,4,3,9,8,5,0,9,4,8,1,9,8,4};
-	print(a);
-	selectionSort(a);
-	print(a);
-	System.out.println("Insert");
-	int[] b=  {1,8,0,1,4,3,9,8,5,0,9,4,8,1,9,8,4};
-	print(b);
-	insertionSort(b);
-	print(b);
-	System.out.println("Bubble");
-	int[] c = {1,8,0,1,4,3,9,8,5,0,9,4,8,1,9,8,4};
-	print(c);
-	bubbleSort(c);
-	print(c); 
-	
+	int[] (char)0 = {1,8,0,1,4,3,9,8,5,0,9,4,8,1,9,8,4};
+	int[] (char)1 = {};
+	for(int type = 0; type < 3; type ++){
+	    
+	    for(int casee = 0; casee < 2; casee ++){
+		
+	    }
+	}
+ 
+
 	System.out.println("Custom");
 	long start, end;
 	if (args.length < 3){
