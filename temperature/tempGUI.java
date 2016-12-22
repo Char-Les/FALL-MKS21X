@@ -10,7 +10,7 @@ public class tempGUI extends JFrame implements ActionListener{
 
     private void toF(){
 	try{
-	    tf.setText("" + tempConvert.CtoF(Double.parseDouble(tf.getText())));
+	    tf.setText("" + tempConvert.CtoF(Double.parseDouble(tc.getText())));
 	}catch(NumberFormatException e){
 	    tf.setText("0");
 	}
@@ -25,7 +25,13 @@ public class tempGUI extends JFrame implements ActionListener{
     }
     
     public void actionPerformed(ActionEvent e){
-	
+	String event = e.getActionCommand();
+	if(event.equals("toF")){
+	    toF();
+	}
+	if(event.equals("toC")){
+	    toC();
+	}
     }
 
     
@@ -36,7 +42,7 @@ public class tempGUI extends JFrame implements ActionListener{
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 	pane = this.getContentPane();
-	pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
+	pane.setLayout(new GridLayout(3, 2));
 	
 	bf = new JButton("Convert to F");
 	bf.addActionListener(this);
@@ -55,8 +61,13 @@ public class tempGUI extends JFrame implements ActionListener{
 	pane.add(lc);
 	pane.add(tf);
 	pane.add(tc);
-	pane.add(bf);
 	pane.add(bc);
+	pane.add(bf);
     }
+
+   public static void main(String[] args) {
+     tempGUI g = new tempGUI();
+     g.setVisible(true);
+  } 
 
 }
