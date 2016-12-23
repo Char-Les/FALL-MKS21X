@@ -12,6 +12,9 @@ public class Sorts{
      *@param data  the elements to be sorted.
      */
     public static void selectionSort(int[] data){
+	if(data.length == 0){
+	    return data;
+	}
 	for (int a = 0; a < data.length - 1; a ++){
 	    int min = a;
 	    for (int b = a; b < data.length; b ++){
@@ -29,6 +32,9 @@ public class Sorts{
      *@param data  the elements to be sorted.
      */
     public static void insertionSort(int[] data){
+	if(data.length == 0){
+	    return data;
+	}
 	for(int thingToPutInPlace = 1; thingToPutInPlace < data.length; thingToPutInPlace ++){
 	    int temp = data[thingToPutInPlace];
 	    int check = thingToPutInPlace;
@@ -45,6 +51,9 @@ public class Sorts{
      *@param data  the elements to be sorted.
      */
     public static void bubbleSort(int[] data){
+	if(data.length == 0){
+	    return data;
+	}
 	boolean swap = true;
 	for (int a = 0; a < data.length - 1 && swap; a ++){
 	    swap = false;
