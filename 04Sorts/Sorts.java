@@ -13,7 +13,7 @@ public class Sorts{
      */
     public static void selectionSort(int[] data){
 	if(data.length == 0){
-	    return data;
+	    return;
 	}
 	for (int a = 0; a < data.length - 1; a ++){
 	    int min = a;
@@ -33,7 +33,7 @@ public class Sorts{
      */
     public static void insertionSort(int[] data){
 	if(data.length == 0){
-	    return data;
+	    return;
 	}
 	for(int thingToPutInPlace = 1; thingToPutInPlace < data.length; thingToPutInPlace ++){
 	    int temp = data[thingToPutInPlace];
@@ -52,7 +52,7 @@ public class Sorts{
      */
     public static void bubbleSort(int[] data){
 	if(data.length == 0){
-	    return data;
+	    return;
 	}
 	boolean swap = true;
 	for (int a = 0; a < data.length - 1 && swap; a ++){
@@ -79,22 +79,22 @@ public class Sorts{
 
     public static String checkCase(int x, int[] ary){
 	if (x == 0){
-	    System.out.println("select: ");
-	    selectSort(ary);
-	    print()
+	    System.out.print("select: ");
+	    print(ary);
+	    selectionSort(ary);
+	    print(ary);
 	}else if(x == 1){
 	    insertionSort(ary);
 	}else if(x == 2){
 	    bubbleSort(ary);
-	}else{
-	    return "something wrong";
 	}
-	
+	return "something wrong";
     }
 
     public static void main(String[] args){
-	int[] (char)0 = {1,8,0,1,4,3,9,8,5,0,9,4,8,1,9,8,4};
-	int[] (char)1 = {};
+	int[] zero = {1,8,0,1,4,3,9,8,5,0,9,4,8,1,9,8,4};
+	int[] one = {};
+	int[][] cases = {zero, one};
 	for(int type = 0; type < 3; type ++){
 	    for(int casee = 0; casee < 2; casee ++){
 		
