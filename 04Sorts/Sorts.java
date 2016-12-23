@@ -77,18 +77,23 @@ public class Sorts{
 	System.out.println();
     }
 
-    public static String checkCase(int x, int[] ary){
+    public static void checkCase(int x, int[] ary){
 	if (x == 0){
 	    System.out.print("select: ");
 	    print(ary);
 	    selectionSort(ary);
 	    print(ary);
 	}else if(x == 1){
+	    System.out.print("insert: ");
+	    print(ary);
 	    insertionSort(ary);
+	    print(ary);
 	}else if(x == 2){
+	    System.out.print("bubble: ");
+	    print(ary);
 	    bubbleSort(ary);
+	    print(ary);
 	}
-	return "something wrong";
     }
 
     public static void main(String[] args){
@@ -97,8 +102,9 @@ public class Sorts{
 	int[][] cases = {zero, one};
 	for(int type = 0; type < 3; type ++){
 	    for(int casee = 0; casee < 2; casee ++){
-		
+		checkCase(type, cases[casee]);
 	    }
+	    System.out.println();
 	}
  
 
@@ -125,7 +131,11 @@ public class Sorts{
 		data[count] = rand.nextInt(10);
 	    }
 	}
-
+	int[] temp = new int[Integer.parseInt(args[0])];
+	for (int a = 0; a < data.length; a ++){
+	    temp[a] = data[a]; 
+	}
+	
 	start = System.currentTimeMillis();
 	if(args[1].compareTo("0") == 0){
 	    Arrays.sort(data);
@@ -141,8 +151,12 @@ public class Sorts{
 	}
 
 	end = System.currentTimeMillis();
-
-	System.out.println(end - start);
+	Arrays.sort(temp);
+	if (temp == data){
+	    System.out.println(end - start);
+	}else{
+	    System.out.println(end-start);
+	}
     }
     
 }
